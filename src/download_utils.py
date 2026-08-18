@@ -28,7 +28,7 @@ def save_file_with_progress(
     """Save the file from the response to the specified path."""
     file_size = int(response.headers.get("Content-Length", -1))
     if file_size == -1:
-        logging.exception("Content length not provided in response headers.")
+        logging.exception("Content length not provided in response headers")
 
     chunk_size = get_chunk_size(file_size)
     total_downloaded = 0

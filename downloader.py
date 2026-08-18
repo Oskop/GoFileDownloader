@@ -234,8 +234,11 @@ def handle_download_process(
 ) -> None:
     """Handle the process of downloading content from a specified URL."""
     if url is None:
-        usage = f"Default usage: {DEFAULT_USAGE}\nPassword usage: {PASSWORD_USAGE}\n"
-        logging.error(usage)
+        logging.error(
+            "Default usage: %s\nPassword usage: %s\n",
+            DEFAULT_USAGE,
+            PASSWORD_USAGE,
+        )
         sys.exit(1)
 
     downloader = Downloader(url=url, live_manager=live_manager, args=args)

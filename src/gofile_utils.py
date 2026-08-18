@@ -26,15 +26,13 @@ def get_content_id(url: str) -> str | None:
     """Extract and returns the content ID from a GoFile URL."""
     try:
         if url.rstrip("/").split("/")[-2] != "d":
-            message = f"Missing ID for URL: {url}"
-            logging.error(message)
+            logging.error("Missing ID for URL: %s", url)
             return None
 
         return url.rstrip("/").split("/")[-1]
 
     except IndexError:
-        message = f"{url} is not a valid GoFile URL."
-        logging.exception(message)
+        logging.exception("%s is not a valid GoFile URL", url)
         return None
 
 
@@ -74,10 +72,11 @@ def check_response_status(response: requests.Response, filename: str) -> bool:
     )
 
     if response_is_invalid:
-        message = (
-            f"Invalid response for {filename}. Status code: {{response.status_code}}"
+        logging.error(
+            "Invalid response for %s. Status code: %s",
+            filename,
+            response.status_code,
         )
-        logging.error(message)
         return False
 
     return True
@@ -92,7 +91,7 @@ def get_account_token() -> str:
     ).json()
 
     if account_response["status"] != "ok":
-        logging.error("Account creation failed.")
+        logging.error("Account creation failed")
         sys.exit(1)
 
     return account_response["data"]["token"]

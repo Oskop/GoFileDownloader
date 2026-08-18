@@ -1,13 +1,9 @@
 """Main module of the project.
 
-This module provides functionality for reading URLs from a file, processing
-them to download anime content, and clearing the file after the process is
-complete.
-
 Usage:
-    Ensure that a file named 'URLs.txt' is present in the same directory as
-    this script. The file should contain a list of URLs, one per line. When
-    executed, the script will:
+    Ensure that a file named 'URLs.txt' is present in the same directory as this script.
+    The file should contain a list of URLs, one per line. When executed, the script
+    will:
         1. Read the URLs from 'URLs.txt'.
         2. Process each URL for downloading anime content.
         3. Clear the contents of 'URLs.txt' after all URLs have been processed.

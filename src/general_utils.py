@@ -1,11 +1,7 @@
-"""Module to handle common tasks.
-
-This module includes functions to handle common tasks such as sending HTTP
-requests, parsing HTML, creating download directories, and clearing the
-terminal, making it reusable across projects.
-"""
+"""Module to handle common tasks."""
 
 import os
+import subprocess
 
 
 def clear_terminal() -> None:
@@ -17,4 +13,4 @@ def clear_terminal() -> None:
 
     command = commands.get(os.name)
     if command:
-        os.system(command)  # noqa: S605
+        subprocess.run([command], check=True)  # noqa: S603
