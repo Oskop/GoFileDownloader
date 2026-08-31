@@ -61,13 +61,14 @@ class Downloader:
         """Initialize the downloader with the given parameters."""
         self.url = url
         self.live_manager = live_manager
-        self.password = args.password if "password" in args else None
+        self.password = getattr(args, "password", None) if args is not None else None
         self.max_workers = MAX_WORKERS
         self.token = get_account_token()
 
+        custom_path = getattr(args, "custom_path", None) if args is not None else None
         self.download_path = (
-            Path(args.custom_path)
-            if args.custom_path is not None
+            Path(custom_path)
+            if custom_path is not None
             else DEFAULT_DOWNLOAD_PATH
         )
         self.download_path.mkdir(parents=True, exist_ok=True)
@@ -249,7 +250,7 @@ def main() -> None:
     """Process command-line arguments to download an album from a specified URL."""
     clear_terminal()
     args = parse_arguments()
-    live_manager = initialize_managers()
+    live_manager = initialize_managers(args=args)
 
     try:
         with live_manager.live:

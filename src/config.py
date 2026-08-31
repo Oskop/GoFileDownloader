@@ -136,6 +136,14 @@ def add_common_arguments(parser: ArgumentParser) -> None:
         help="The directory where the downloaded content will be saved.",
     )
     parser.add_argument(
+        "--no-live",
+        "--simple-progress",
+        dest="simple_progress",
+        action="store_true",
+        default=False,
+        help="Use simple single-line progress display (recommended for Google Colab, Jupyter, and headless environments).",
+    )
+    parser.add_argument(
         "--version",
         action="version",
         version=get_version_string(),

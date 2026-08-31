@@ -30,7 +30,7 @@ SESSION_FILE_PATH = Path.cwd() / SESSION_LOG
 
 def process_urls(urls: list[str], args: Namespace | None = None) -> None:
     """Validate and downloads items for a list of URLs."""
-    live_manager = initialize_managers()
+    live_manager = initialize_managers(args=args)
 
     try:
         with live_manager.live:
